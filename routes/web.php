@@ -20,6 +20,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('user/{id}/edit', function($id){
+    return $id;
+})->name('user.edit');
+
+Route::get('user/{id}/delete', function($id){
+    return $id;
+})->name('user.delete');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -14,7 +14,12 @@ class UsersDataTable extends DataTable
 {
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
-        return (new EloquentDataTable($query))->setRowId('id');
+        return (new EloquentDataTable($query))
+        ->addColumn('action', function($query){
+            return '<a href="'.route('user.edit', $query->id).'" class="p-2"><i class="bi bi-pencil-square"></i></a>
+                    <a href="'.route('user.delete', $query->id).'" class="p-2"><i class="bi bi-pencil-square"></i></a>';
+        })
+        ->setRowId('id');
     }
  
     public function query(User $model): QueryBuilder
@@ -49,6 +54,11 @@ class UsersDataTable extends DataTable
             Column::make('email'),
             Column::make('created_at'),
             Column::make('updated_at'),
+            Column::computed('action')
+            ->exportable(false)
+            ->printable(false)
+            ->width(60)
+            ->addClass('text-center'),
         ];
     }
  
