@@ -16,7 +16,7 @@ class UsersDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
         ->addColumn('action', function($query){
-            return '<a href="'.route('users.edit', $query->id).'" class="p-2"><i class="bi bi-pencil-square"></i></a>
+            return '<a href="'.route('user.edit', $query->id).'" class="p-2"><i class="bi bi-pencil-square"></i></a>
                     <a href="'.route('user.delete', $query->id).'" class="p-2"><i class="bi bi-trash"></i></a>';
         })
         ->setRowId('id');
