@@ -34,3 +34,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/users', [UsersController::class, 'index'])->name('users.index');
 Route::get('user/{id}/edit', [UsersController::class, 'edit'])->name('user.edit');
 Route::put('user/{id}', [UsersController::class, 'update'])->name('user.update');
+Route::delete('user/{id}', [UsersController::class, 'destroy'])->name('user.destroy');

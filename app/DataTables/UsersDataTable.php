@@ -15,13 +15,17 @@ class UsersDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-        ->addColumn('action', function($query){
-            return '<a href="'.route('user.edit', $query->id).'" class="p-2"><i class="bi bi-pencil-square"></i></a>
-                    <a href="'.route('user.delete', $query->id).'" class="p-2"><i class="bi bi-trash"></i></a>';
-        })
-        ->setRowId('id');
+            ->addColumn('action', function($query) {
+                return '<a href="'.route('user.edit', $query->id).'" class="p-2"><i class="bi bi-pencil-square"></i></a>
+                        <form method="POST" action="'.route('user.destroy', $query->id).'" class="d-inline">
+                            ' . csrf_field() . '
+                            ' . method_field('DELETE') . '
+                            <button type="submit" class="btn btn-link p-2"><i class="bi bi-trash"></i></button>
+                        </form>';
+            })
+            ->setRowId('id');
     }
- 
+    
     public function query(User $model): QueryBuilder
     {
         return $model->newQuery();

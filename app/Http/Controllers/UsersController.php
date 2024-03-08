@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
+
 use Illuminate\Http\Request;
  
 use App\DataTables\UsersDataTable;
@@ -35,5 +37,13 @@ class UsersController extends Controller
         $user->update($validatedData);
 
         return redirect()->route('users.index', $user->id)->with('success', 'User updated successfully.');
+    }
+
+    public function destroy($id): RedirectResponse
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('users.index')->with('success', 'User deleted successfully.');
     }
 }
