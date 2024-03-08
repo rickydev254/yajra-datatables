@@ -24,8 +24,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware(['auth', 'admin.role'])->group(function () {
 Route::get('/users', [UsersController::class, 'index'])->name('users.index');
 Route::get('user/{id}/edit', [UsersController::class, 'edit'])->name('user.edit');
 Route::put('user/{id}', [UsersController::class, 'update'])->name('user.update');
 Route::delete('user/{id}', [UsersController::class, 'destroy'])->name('user.destroy');
 Route::get('user/{id}', [UsersController::class, 'show'])->name('user.show');
+});
