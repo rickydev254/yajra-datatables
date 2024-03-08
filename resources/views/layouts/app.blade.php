@@ -74,8 +74,23 @@
 
         <main class="py-4">
             @yield('content')
+
+            <div id="success-message" class="alert alert-success text-center" style="display: none;"></div>
+
         </main>
     </div>
     @stack('scripts')
 </body>
 </html>
+
+<!-- Your scripts here -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var successMessage = '{{ session('success') }}';
+        if (successMessage) {
+            document.getElementById('success-message').innerText = successMessage;
+            document.getElementById('success-message').style.display = 'block';
+        }
+    });
+</script>
+
