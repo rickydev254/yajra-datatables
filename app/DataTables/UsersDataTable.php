@@ -16,7 +16,8 @@ class UsersDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function($query) {
-                return '<a href="'.route('user.edit', $query->id).'" class="p-2"><i class="bi bi-pencil-square"></i></a>
+                return '<a href="'.route('user.show', $query->id).'" class="p-2"><i class="bi bi-eye"></i></a>
+                        <a href="'.route('user.edit', $query->id).'" class="p-2"><i class="bi bi-pencil-square"></i></a>
                         <form method="POST" action="'.route('user.destroy', $query->id).'" class="d-inline">
                             ' . csrf_field() . '
                             ' . method_field('DELETE') . '

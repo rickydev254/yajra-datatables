@@ -20,13 +20,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('user/{id}/edit', function($id){
-//     return $id;
-// })->name('user.edit');
-
-Route::get('user/{id}/delete', function($id){
-    return $id;
-})->name('user.delete');
 
 Auth::routes();
 
@@ -35,3 +28,4 @@ Route::get('/users', [UsersController::class, 'index'])->name('users.index');
 Route::get('user/{id}/edit', [UsersController::class, 'edit'])->name('user.edit');
 Route::put('user/{id}', [UsersController::class, 'update'])->name('user.update');
 Route::delete('user/{id}', [UsersController::class, 'destroy'])->name('user.destroy');
+Route::get('user/{id}', [UsersController::class, 'show'])->name('user.show');
